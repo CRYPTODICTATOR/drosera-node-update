@@ -28,8 +28,7 @@ This guide helps you update your existing Drosera node to version v1.17.2. It co
 # 7. Navigate to your trap directory
 `cd ~/my-drosera-trap`
 
-# 8. Update the RPC endpoint in drosera.toml (if required)
-# Make sure the relay endpoint is set properly
+# 8. Update the RPC endpoint in drosera.toml
 `sed -i '2s|.*|drosera_rpc = "https://relay.testnet.drosera.io"|' "$HOME/my-drosera-trap/drosera.toml"`
 
 # 9. Apply any configuration changes using your private key

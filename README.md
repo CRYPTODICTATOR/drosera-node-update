@@ -7,43 +7,43 @@ This guide helps you update your existing Drosera node to version v1.17.2. It co
 
 ✅ Step-by-Step Update Instructions
 # 1. Stop your currently running Docker node and remove volumes
-cd ~/Drosera-Network && docker compose down -v
+`cd ~/Drosera-Network && docker compose down -v`
 
 # 2. Move to your home directory
-cd ~
+`cd ~`
 
 # 3. Download the latest operator binary (v1.17.2)
-curl -LO https://github.com/drosera-network/releases/releases/download/v1.17.2/drosera-operator-v1.17.2-x86_64-unknown-linux-gnu.tar.gz
+`curl -LO https://github.com/drosera-network/releases/releases/download/v1.17.2/drosera-operator-v1.17.2-x86_64-unknown-linux-gnu.tar.gz`
 
 # 4. Extract the downloaded tar file
-tar -xvf drosera-operator-v1.17.2-x86_64-unknown-linux-gnu.tar.gz
+`tar -xvf drosera-operator-v1.17.2-x86_64-unknown-linux-gnu.tar.gz`
 
 # 5. Verify the updated version
-./drosera-operator --version
+`./drosera-operator --version`
 # Output should show: drosera-operator v1.17.2
 
 # 6. Pull the latest Docker image
-docker pull ghcr.io/drosera-network/drosera-operator:latest
+`docker pull ghcr.io/drosera-network/drosera-operator:latest`
 
 # 7. Navigate to your trap directory
-cd ~/my-drosera-trap
+`cd ~/my-drosera-trap`
 
 # 8. Update the RPC endpoint in drosera.toml (if required)
 # Make sure the relay endpoint is set properly
-sed -i '2s|.*|drosera_rpc = "https://relay.testnet.drosera.io"|' "$HOME/my-drosera-trap/drosera.toml"
+`sed -i '2s|.*|drosera_rpc = "https://relay.testnet.drosera.io"|' "$HOME/my-drosera-trap/drosera.toml"`
 
 # 9. Apply any configuration changes using your private key
 # Replace `xxx` with your actual private key (never share it publicly)
-DROSERA_PRIVATE_KEY=xxx drosera apply
+`DROSERA_PRIVATE_KEY=xxx drosera apply`
 
 # 10. Start your updated node with Docker
-cd ~/Drosera-Network && docker compose up -d
+`cd ~/Drosera-Network && docker compose up -d`
 
 # 11. Check if your Docker container is running
-docker ps -a
+`docker ps -a`
 
 # 12. Monitor live logs
-docker compose logs -f
+`docker compose logs -f`
 
 📌 Notes
 ✅ This update does not require re-deploying your trap or re-registering your operator.

@@ -105,6 +105,8 @@ Guide by CRYPTODICTATOR
 
 Twitter: @domainpay
 
+https://x.com/domainpay
+
 ---
 ---
 

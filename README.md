@@ -2,85 +2,93 @@
 
 A step-by-step guide to upgrade your existing Drosera node to version **v1.17.2**.
 
-> **Note:** This guide assumes you already have a working Drosera node setup. No need to re-register trap or operator.
+> **Note:** No need to re-register your operator or trap.
 
 ---
 
 ## ✅ Prerequisites
 
-Make sure you’re logged into your server where the node is installed and your current node is running under `~/my-drosera-trap`.
+You should already have your node installed in this directory:
+
+~/my-drosera-trap
 
 ---
 
 ## 1. Stop Old Node
 
+
 ```bash
 cd ~/Drosera-Network && docker compose down -v
+```
 
 
----
+# 2. Move to your home directory
 
-2. Download & Install New Binary
 
+```bash
 cd ~
+```
+
+# 3. Download the latest operator binary (v1.17.2)
+
+```bash
 curl -LO https://github.com/drosera-network/releases/releases/download/v1.17.2/drosera-operator-v1.17.2-x86_64-unknown-linux-gnu.tar.gz
+```
+
+# 4. Extract the downloaded tar file
+
+```bash
 tar -xvf drosera-operator-v1.17.2-x86_64-unknown-linux-gnu.tar.gz
+```
 
-Check the installed version:
-
+# 5. Verify the updated version
+```bash
 ./drosera-operator --version
+```
+Output should show: drosera-operator v1.17.2
 
 
----
-
-3. Pull Latest Docker Image
-
+# 6. Pull the latest Docker image
+```bash
 docker pull ghcr.io/drosera-network/drosera-operator:latest
+```
 
-
----
-
-4. Update drosera.toml Config (Optional but Recommended)
-
+# 7. Navigate to your trap directory
+```bash
 cd ~/my-drosera-trap
+```
 
+
+# 8. Update the RPC endpoint in drosera.toml
+
+```bash
 sed -i '2s|.*|drosera_rpc = "https://relay.testnet.drosera.io"|' "$HOME/my-drosera-trap/drosera.toml"
+```
+# 9. Apply any configuration changes using your private key
+```bash
 
+DROSERA_PRIVATE_KEY=xxx drosera apply
+```
+Replace `xxx` with your actual private key (never share it publicly)
 
----
+# 10. Start your updated node with Docker
 
-5. Apply Changes with Your Private Key
-
-cd ~/my-drosera-trap
-
-DROSERA_PRIVATE_KEY=your_private_key_here drosera apply
-
-> Replace your_private_key_here with your actual private key (no spaces).
-
-
-
-
----
-
-6. Restart Node
-
+```bash
 cd ~/Drosera-Network && docker compose up -d
+```
 
+# 11. Check if your Docker container is running
 
----
-
-7. Check Logs & Status
-
-Check running containers:
-
+```bash
 docker ps -a
+```
 
-View live logs:
+# 12. Monitor live logs
 
+```bash
 docker compose logs -f
+```
 
-
----
 
 ✅ Done!
 
@@ -92,7 +100,20 @@ Check your dashboard for confirmation.
 
 Credits
 
+
 Guide by CRYPTODICTATOR
-Twitter: @Domainpay
+
+Twitter: @domainpay
+
+---
+---
+
+📌 Notes
+
+✅ This update does not require re-deploying your trap or re-registering your operator.
+
+🛠️ If you made edits to drosera.toml, always run drosera apply with your private key.
+
+🔐 Never hardcode your private key in scripts if you plan to publish the repo.
 
 ---
